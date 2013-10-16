@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cms</title>
+
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+   
+  <link rel="stylesheet" media="screen" type="text/css" href="assets/css/colorpicker.css" />
+<script type="text/javascript" src="assets/js/colorpicker.js"></script>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+
+<%if user_signed_in?%>
+	Välkommen, <%= current_user.email %><br />
+
+	<%= link_to "Log out", destroy_user_session_path, :method => :delete %>
+	
+	<%if can? :read, User.all %>
+		| <%= link_to "Användare", admin_users_path %>
+	<%end%>
+	<br />
+	
+	<div class="nav_item">
+	<%if can? :read, User, current_user.id %>
+		<%= link_to "Din profil", admin_user_path(current_user.id) %>
+	<%end%>
+	<% if defined? @page.site.title %>
+		-> Site: <%= link_to @page.site.title, site_path(@page.site) %>
+		-> <%= @page.title %>
+	
+	<% elsif defined? @site %>
+		-> Site: <%= @site.title %>
+	<% elsif defined? @mother_site%>
+		-> Site: <%= @mother_site.title %>
+	<%end%>
+	</div>
+<%else%>
+	<%= link_to "Log in", new_user_session_path %>
+	|
+	<%= link_to "Sign up", new_user_registration_path %>
+<%end%>
+
+<%= yield %>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<h1>Mina siter</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Titel</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sites.each do |site| %>
+      <tr>
+        <td><%= link_to site.title, site %></td>
+        <td><%= link_to 'Redigera', edit_site_path(site) %></td>
+        <td><%= link_to 'Ta bort', site, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Site', new_admin_user_site_path(@user) %>

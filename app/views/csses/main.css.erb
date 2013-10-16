@@ -1,0 +1,68 @@
+ #maincontainer{
+<%= write_it("width:",  @wraper.css.width) %>
+margin: 0 auto; 
+}
+
+header{
+
+height: 90px; /*Height of top section*/
+ <%= write_it("color:", @header.css.color) %>
+ <%= write_it("background:", @header.css.background) %>
+}
+
+
+
+#contentwrapper{
+float: left;
+width: 100%;
+ 
+}
+
+#contentcolumn{
+	 
+	 <%= margin("margin:", @right, @left) %>
+min-height:650px;
+ <%= write_it("color:",  @content.css.color) %>
+ <%= write_it("background:",  @content.css.background) %>
+}
+
+
+#rightcolumn{
+float: left;
+<%= write_it("width:", width(@right)) %>
+ <%= write_it("margin-left:", sign(@right,"-")) %>
+ <%= write_it("color:", @right.css.color) %>
+ <%= write_it("background:", @right.css.background) %>
+
+
+}
+
+#leftcolumn{
+float: left;
+ <%= write_it("width:", width(@left)) %>
+<%= write_it("margin-left: -",  @wraper.css.width) %>
+<%= write_it("color:", @left.css.color) %>
+ <%= write_it("background:", @left.css.background) %>	
+	
+}
+
+
+footer{
+clear: left;
+width: 100%;
+text-align: center;
+padding: 4px 0;
+ <%= write_it("color:",  @footer.css.color) %>
+ <%= write_it("background:",  @footer.css.background) %>
+}
+
+footer a{
+color: #FFFF80;
+}
+
+
+
+
+
+
+

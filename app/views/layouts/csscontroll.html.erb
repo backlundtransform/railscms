@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cms</title>
+
+
+  
+
+ <link rel="stylesheet" media="screen" type="text/css" href="../../assets/application.css" />
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+   <script type="text/javascript" src="sections/main.js">
+   	
+   </script>
+  <link rel="stylesheet" media="screen" type="text/css" href="../../assets/css/colorpicker.css" />
+<script type="text/javascript" src="../../assets/js/colorpicker.js"></script>
+           <link rel="stylesheet" class="css" type="text/css" href="csses/main.css">
+<script type="text/javascript" src=" ../../assets/ui/js/jquery-ui-1.10.3.custom.js"></script>
+ <link rel="stylesheet" media="screen" type="text/css" href="../../assets/ui/css/eggplant/jquery-ui-1.10.3.custom.css" />
+     <style></style>
+
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+
+
+
+
+
+
+
+ <div id="userbar"><ul>
+<li>
+CSS
+<ul>
+<li><a href="javascript:{}" class="default">Save as default CSS</a></li>
+<li><a href="javascript:{}" class="dialog">Save as new CSS</a></li>
+<li><a href="layouts" class="dialog">Manage CSS files</a></li>
+  	
+	
+
+</ul>
+</li>
+
+  <li>
+
+  </li>
+
+
+</ul>
+</div><br><br><br>
+
+<div id="tabs">
+  <ul>
+    <li><a href="#tabs-1">General layout</a></li>
+    <li class="htab"><a href="#tabs-2"><%=@header.name %></a></li>
+    <li class="ctab"><a href="#tabs-3"><%=@content.name %></a></li>
+    <li class="rtab"><a href="#tabs-4"><%=@right.name %></a></li>
+    <li class="ltab"><a href="#tabs-5"><%=@left.name %></a></li>
+     <li class="ftab"><a href="#tabs-6"><%=@footer.name %></a></li>
+  </ul>
+  <div id="tabs-1">
+  
+      <br>
+       
+      
+<%= check_box_tag "header_box", 1, @header.checked %> Header 
+<br><%= check_box_tag "right_box", 1, @content.checked %> Right
+<br><%= check_box_tag "left_box", 1, @right.checked %> Left
+<br><%= check_box_tag "footer_box", 1, @footer.checked %> Footer
+<br>
+<%= check_box_tag("name_dynamical","", checked = false)
+         %> Fluid Layout
+<p>width:
+<input id="main_spinner" name="value" /> <button id="main_setvalue">Set value</button>
+</p>
+     </div>
+  <div id="tabs-2">
+  
+  Textcolor: <%= text_field(:css, :color,  :id => @header.name+"field", :class => "color", :value => @header.css.color) %>
+  Background:  <%= text_field(:css, :color, :id => @header.name+"field",  :class => "background", :value => @header.css.background) %>
+  
+   </div> 
+  <div id="tabs-3">
+        Textcolor: <%= text_field(:css, :color,  :id => @content.name+"field", :class => "color", :value => @content.css.color) %>
+  Background:  <%= text_field(:css, :color, :id => @content.name+"field",  :class => "background", :value => @content.css.background) %>
+
+     </div>
+  <div id="tabs-4">
+   Textcolor: <%= text_field(:css, :color,  :id => @right.name+"field", :class => "color", :value => @right.css.color) %>
+  Background:  <%= text_field(:css, :color, :id => @right.name+"field",  :class => "background", :value => @right.css.background) %>
+<p>
+width:
+<input id="rw_spinner" name="value" /> <button id="rw_setvalue">Set value</button>
+</p>
+     </div>
+     <div id="tabs-5">
+      Textcolor: <%= text_field(:css, :color,  :id => @left.name+"field", :class => "color", :value => @left.css.color) %>
+  Background:  <%= text_field(:css, :color, :id => @left.name+"field",  :class => "background", :value => @left.css.background) %>
+<p>width:
+<input id="lw_spinner" name="value" /> <button id="lw_setvalue">Set value</button>
+</p>
+     </div>
+      <div id="tabs-6">
+      Textcolor: <%= text_field(:css, :color,  :id => @footer.name+"field", :class => "color", :value => @footer.css.color) %>
+  Background:  <%= text_field(:css, :color, :id => @footer.name+"field",  :class => "background", :value => @footer.css.background) %>
+
+     </div>
+</div>
+
+<div id="content">
+	
+<%= render :template => 'sections/main' %></div>
+
+        <div id="dialog" title="Save as new Css">
+               <%=text_field_tag 'some_input', nil, :class => 'text'%><br>
+<p><%= button_tag "Save", class:"save"%></p>
+
+</div>
+
+ 
+
+
+</body>
+</html>

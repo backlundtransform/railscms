@@ -1,0 +1,159 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+#userbar{
+ display: block;
+ font-family: arial,verdana,sans-serif;
+background-image: linear-gradient(bottom, rgb(165,172,179) 19%, rgb(151,170,184) 55%, rgb(175,183,199) 87%);
+background-image: -o-linear-gradient(bottom, rgb(165,172,179) 19%, rgb(151,170,184) 55%, rgb(175,183,199) 87%);
+background-image: -moz-linear-gradient(bottom, rgb(165,172,179) 19%, rgb(151,170,184) 55%, rgb(175,183,199) 87%);
+background-image: -webkit-linear-gradient(bottom, rgb(165,172,179) 19%, rgb(151,170,184) 55%, rgb(175,183,199) 87%);
+background-image: -ms-linear-gradient(bottom, rgb(165,172,179) 19%, rgb(151,170,184) 55%, rgb(175,183,199) 87%);
+ filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#e6e6e6', endColorstr='#CCCCCC');
+background-image: -webkit-gradient(
+linear,
+left bottom,
+left top,
+color-stop(0.19, rgb(165,172,179)),
+color-stop(0.55, rgb(151,170,184)),
+color-stop(0.87, rgb(175,183,199))
+);
+ font-size: 10px;
+ font-weight: bold;
+ width:100%;
+ height:38px;
+position: fixed;
+ top 0;
+ right: 0;
+ border: inset 2px #000;
+ margin-top: -24px;
+  font-size: 12px;
+  
+ z-index: 999;
+ 
+ 
+}
+
+#userbar li {
+ display: block;
+ padding-left:10px;
+  padding-right:10px;
+   padding-top:2px;
+  padding-bottom:2px;
+ margin-top: 0px;
+ float: left;
+ color:#000;
+
+ white-space: nowrap;
+ width: auto;
+ 
+ 
+
+}
+
+#userbar li a {
+ background-color: inherit;
+ color: #000000;
+ text-decoration: none;
+ 
+ 
+}
+
+#userbar li ul {
+ background-color: #bbb;
+ border: inset 1px #000;
+ color:#00000;
+ display: none;
+ padding: 0px;
+ position: absolute;
+ width: 160px;
+ 
+
+ 
+ 
+}
+
+#userbar li:hover {
+display: block;
+padding-top 10px;
+ background-image: linear-gradient(bottom, rgb(165,172,179) 19%, rgb(175,198,214) 55%, rgb(227,235,250) 87%);
+background-image: -o-linear-gradient(bottom, rgb(165,172,179) 19%, rgb(175,198,214) 55%, rgb(227,235,250) 87%);
+background-image: -moz-linear-gradient(bottom, rgb(165,172,179) 19%, rgb(175,198,214) 55%, rgb(227,235,250) 87%);
+background-image: -webkit-linear-gradient(bottom, rgb(165,172,179) 19%, rgb(175,198,214) 55%, rgb(227,235,250) 87%);
+background-image: -ms-linear-gradient(bottom, rgb(165,172,179) 19%, rgb(175,198,214) 55%, rgb(227,235,250) 87%);
+
+background-image: -webkit-gradient(
+linear,
+left bottom,
+left top,
+color-stop(0.19, rgb(165,172,179)),
+color-stop(0.55, rgb(175,198,214)),
+color-stop(0.87, rgb(227,235,250))
+);
+ color:#00000;
+ height: 20px;
+
+  border: inset 1px #000;
+  border-radius:5px;
+-moz-border-radius:5px;
+ 
+  
+}
+
+#userbar li:hover ul {
+ display: block; text-decoration: none;
+ 
+}
+
+#userbar li li {
+ display: block;
+ padding: 0px;
+ width: 95%;
+ margin:1px 1px 1px 1px;
+ 
+}
+
+#userbar li li:hover {
+background-image: linear-gradient(bottom, rgb(165,172,179) 19%, rgb(175,198,214) 55%, rgb(227,235,250) 87%);
+background-image: -o-linear-gradient(bottom, rgb(165,172,179) 19%, rgb(175,198,214) 55%, rgb(227,235,250) 87%);
+background-image: -moz-linear-gradient(bottom, rgb(165,172,179) 19%, rgb(175,198,214) 55%, rgb(227,235,250) 87%);
+background-image: -webkit-linear-gradient(bottom, rgb(165,172,179) 19%, rgb(175,198,214) 55%, rgb(227,235,250) 87%);
+background-image: -ms-linear-gradient(bottom, rgb(165,172,179) 19%, rgb(175,198,214) 55%, rgb(227,235,250) 87%);
+
+background-image: -webkit-gradient(
+linear,
+left bottom,
+left top,
+color-stop(0.19, rgb(165,172,179)),
+color-stop(0.55, rgb(175,198,214)),
+color-stop(0.87, rgb(227,235,250))
+);
+ color:#00000;
+ text-decoration: none;
+ margin:1px 1px 1px 1px;
+ font-size: 11px;
+ font-weight: bold;
+ 
+ 
+ }
+
+#userbar li li a {
+ background-color: inherit;
+ border: 0px;
+ color:#00000;
+ display: block;
+ font-size: 11px;
+ font-weight: normal;
+padding: 4px 10px 4px 10px;
+}

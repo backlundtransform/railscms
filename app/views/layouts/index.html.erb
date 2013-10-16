@@ -1,0 +1,22 @@
+
+    <% @layouts.each do |layout| %>
+<%= radio_button_tag("name",layout.id, checked = layout.checked, options = {})
+         %> <%=layout.title  %>
+        <td><%= link_to 'Show', layout %></td>
+        <td><%= link_to 'Edit', edit_layout_path(layout) %></td>
+        <td><%= link_to 'Destroy', layout, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<% @checked=Layout.find_all_by_checked(true) %>
+
+  <% @checked.each do |checked| %>
+  <%= checked.id %>
+  <% end %>
+
+<%= link_to 'New Layout', new_layout_path %>
+
+

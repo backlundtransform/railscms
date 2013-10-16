@@ -1,0 +1,15 @@
+
+<p>
+  <strong>Color:</strong>
+
+   <%= best_in_place @css, @css.color %>
+</p>
+
+<p>
+  <strong>Background:</strong>
+
+  <%= best_in_place @css, @css.background%>
+</p>
+
+<%= link_to 'Edit', edit_css_path(@css) %> |
+<%= link_to 'Back', csses_path %>

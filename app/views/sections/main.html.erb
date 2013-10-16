@@ -1,0 +1,35 @@
+
+
+<section id="maincontainer">
+ <% @sections.each do |section| %>
+	 <% if section.name=="header"%>
+ 		<header><h1>
+ 			
+ 			
+ 			<div id="headeredit" contenteditable="true"><%= section.content.html_safe %></div></h1></header>
+	<% elsif  section.name=="contentcolumn" %>
+		<section id="contentwrapper">
+			<section id="contentcolumn" class="column">
+			
+			</section>
+		</section>
+		<% elsif section.name=="leftcolumn" %>
+			<section id="<%= section.name %>" class="column">
+			<div id="leftedit" contenteditable="true"><%= section.content.html_safe %></div>
+			</section>
+			
+			<% elsif section.name=="rightcolumn" %>
+			<section id="<%= section.name %>" class="column">
+			<div id="rightedit" contenteditable="true"><%= section.content.html_safe %></div>
+			</section>
+			
+		 
+		<% elsif section.name=="footer" %>
+	
+			<footer><div id="editable" contenteditable="true"><%= section.content.html_safe %></div></footer>
+			
+	 <% end %>
+
+ <% end %>
+ 
+</section>

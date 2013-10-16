@@ -1,0 +1,23 @@
+<section id="maincontainer">
+ <% @sections.each do |section| %>
+	 <% if section.name=="header"%>
+ 		<header><h1><%= section.name %></h1></header>
+	<% elsif  section.name=="contentcolumn" %>
+		<section id="contentwrapper">
+			<section id="contentcolumn" class="column">
+			
+			</section>
+		</section>
+		<% elsif section.name=="leftcolumn" or section.name=="rightcolumn" %>
+			<section id="<%= section.name %>" class="column">
+			<%= section.name %>
+			</section>
+	<% else %>
+	
+			<footer><%= section.name %></footer>
+			
+	 <% end %>
+
+ <% end %>
+ 
+</section>

@@ -1,0 +1,29 @@
+<% if notice %>
+	<%= notice %>
+<% end %>
+
+<h1>AdminUsers</h1>
+
+<table>
+	<tr>
+		<td>Email</td>
+		<td>Roll</td>
+		<td>Redigera</td>
+		<td>Ta bort</td>
+		
+		
+	</tr>
+
+<% @admin_users.each do |user| %>
+
+	<tr>
+		<td><%= link_to user.email, admin_user_path(user.id) %></td>
+		<td><%= user.role %></td>
+		<td><%= link_to "Edit", edit_admin_user_path(user.id) %></td>
+		<td><%= link_to "Ta bort", admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	</tr>
+
+<% end %>
+
+<%= link_to "Skapa en ny användare",new_admin_user_path %>
+</table>

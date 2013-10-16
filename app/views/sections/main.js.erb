@@ -1,0 +1,334 @@
+$(document).ready(function() {
+
+
+$('#header_box').click({param: '/sections/<%= @header.id %>', param2:".htab"}, check);
+$('#content_box').click({param: '/sections/<%= @content.id %>', param2:".ctab"}, check);
+$('#right_box').click({param: '/sections/<%= @right.id %>', param2:".rtab"}, check);
+$('#left_box').click({param: '/sections/<%= @left.id %>', param2:".ltab"}, check);
+$('#footer_box').click({param: '/sections/<%= @footer.id %>', param2:".ftab"}, check);
+$('#headerfield.background').click({param: '/csses/<%= @header.css.id %>'}, cssbackground);
+$('#contentcolumnfield.background').click({param: '/csses/<%= @content.css.id %>'}, cssbackground);
+$('#rightcolumnfield.background').click({param: '/csses/<%= @right.css.id %>'}, cssbackground);
+$('#leftcolumnfield.background').click({param: '/csses/<%= @left.css.id %>'}, cssbackground);
+$('#footerfield.background').click({param: '/csses/<%= @footer.css.id %>'}, cssbackground);
+$('#headerfield.color').click({param: '/csses/<%= @header.css.id %>'}, csscolor);
+$('#contentcolumnfield.color').click({param: '/csses/<%= @content.css.id %>'}, csscolor);
+$('#rightcolumnfield.color').click({param: '/csses/<%= @right.css.id %>'}, csscolor);
+$('#leftcolumnfield.color').click({param: '/csses/<%= @left.css.id %>'}, csscolor);
+$('#footerfield.color').click({param: '/csses/<%= @footer.css.id %>'}, csscolor);
+ $("#tabs").tabs();
+ 
+ $( "#rw_spinner" ).spinner({ min: 0 }).val("<%= @right.css.width.to_i %>");
+ $( "#lw_spinner" ).spinner({ min: 0 }).val("<%= @left.css.width.to_i %>");
+ $( "#main_spinner" ).spinner({ min: 0 }).val("<%= @wraper.css.width.to_i %>");
+ $("#rw_setvalue").click({param: '/csses/<%= @right.css.id %>', param2: "#rw_spinner"}, csswidth);
+ $("#lw_setvalue").click({param: '/csses/<%= @left.css.id %>', param2: "#lw_spinner"}, csswidth);
+ 
+ $("#name_dynamical").click(cssdyn);
+ CKEDITOR.disableAutoInline = true;
+
+CKEDITOR.inline( 'headeredit', {
+    on: {
+        blur: function( event ) {
+            var data = event.editor.getData();
+            edit(data, '/sections/<%= @header.id %>');
+        }
+    }
+} );
+
+
+CKEDITOR.inline( 'rightedit', {
+    on: {
+        blur: function( event ) {
+            var data = event.editor.getData();
+            edit(data, '/sections/<%= @right.id %>');
+        }
+    }
+} );
+
+CKEDITOR.inline( 'leftedit', {
+    on: {
+        blur: function( event ) {
+            var data = event.editor.getData();
+            edit(data, '/sections/<%= @left.id %>');
+        }
+    }
+} );
+
+
+
+
+ 
+ $("#dialog").dialog({ autoOpen: false,
+    width: 300,
+    height: 200,
+ 
+  });
+  
+  $("#dialog2").dialog({ autoOpen: false,
+    width: 300,
+    height: 200,
+ 
+  });
+
+
+$('a.dialog').click(function() {
+
+
+$('#dialog').dialog('open');
+
+});
+
+$('.default').click(function() {  
+$.ajax({url:"csses/main.css",success:function(result){
+
+
+
+  $.ajax({
+        type: "POST",
+
+        url: '/layouts/1',
+        data:  { layout: {content: result}, _method:'put'},
+         dataType: "JSON",
+
+        success: function ()
+                { alert('Success');
+                
+                
+                 },
+
+        error: function ()
+        { alert('fail');
+
+           
+        }
+    })
+
+      }});
+ });
+
+$('.save').click(function() {  
+
+  $.ajax({url:"csses/main.css",success:function(result){
+
+
+
+  $.ajax({
+        type: "POST",
+
+        url: '/layouts',
+        data:  { layout: { title: $(".text").val(), content: result} },
+         dataType: "JSON",
+
+        success: function ()
+                { alert('Success');
+                  $('#dialog').dialog('close');
+                
+                 },
+
+        error: function ()
+        { alert('fail');
+
+           $('#dialog').dialog('close');
+        }
+    })
+
+
+      }});
+       
+});
+
+
+
+
+
+
+
+
+});
+
+
+
+
+
+function check(event){
+
+ 
+    
+    if($(this).is(":checked"))
+	{
+
+	
+		 $.ajax({
+                         type: "POST",
+                         url: event.data.param,
+                          data: { section: { checked: "1"}, _method:'put'
+                           },
+                            dataType: "JSON"
+                           }).done(function() {
+
+                   $('#content').load('sections/main.html #content');
+                    $(event.data.param2).css("display","block");
+                    $.ajax({url:"csses/main.css",success:function(result){
+                 $("style").html(result);
+                
+                 }});
+                });
+	}
+	else
+	{
+		 $.ajax({
+                         type: "POST",
+                         url: event.data.param,
+                         data: { section: { checked: "0"}, _method:'put'
+                          },
+                          dataType: "JSON"
+                          }).done(function() {
+                  
+
+                    $('#content').load('sections/main.html #content');
+                            $(event.data.param2).css("display","none");
+                              $.ajax({url:"csses/main.css",success:function(result){
+                 $("style").html(result);
+                 
+                 }});
+
+
+                });
+	}
+  
+};
+
+function cssbackground(event){
+
+         $(this).ColorPicker({
+         	onSubmit: function(hsb, hex, rgb, el) {
+		$(el).val("#"+hex);
+		$(el).ColorPickerHide();
+          $.ajax({
+                type: "POST",
+                url: event.data.param, 
+                data: { css: { background: "#"+hex}, _method:'put'
+                  },
+                dataType: "JSON"
+                }).done(function(data){
+                  
+                 $.ajax({url:"csses/main.css",success:function(result){
+                 $("style").html(result);
+               
+                 }});
+                 });
+                  }})
+
+                   };
+          
+    
+function csscolor(event){
+
+ $(this).ColorPicker({
+	onSubmit: function(hsb, hex, rgb, el) {
+		$(el).val("#"+hex);
+		$(el).ColorPickerHide();
+          $.ajax({
+                type: "POST",
+                url: event.data.param, 
+                data: { css: { color: "#"+hex}, _method:'put'
+                  },
+                dataType: "JSON"
+                }).done(function( msg ) {
+                          $.ajax({url:"csses/main.css",success:function(result){
+                          $("style").html(result);
+                          }});
+                 
+                 
+                            });
+                            }})
+
+                  };
+      
+
+function csswidth(event){
+	
+	
+	
+	$.ajax({
+		
+		
+                         type: "POST",
+                         url: event.data.param,
+                         data: { css: { width:  $(event.data.param2).spinner("value")+"px"}, _method:'put'
+                          },
+                          dataType: "JSON"
+                          }).done(function() {
+                  alert(event.data.param);
+                              $.ajax({url:"csses/main.css",success:function(result){
+                 $("style").html(result);
+                 }});
+
+
+                });
+
+	
+	
+	
+	 };
+	 
+	 
+	 function cssdyn(){
+	if($(this).is(":checked"))
+	{
+		
+	$.ajax({
+                         type: "POST",
+                         url: "/csses/<%= @wraper.css.id %>",
+                         data: { css: { width:  "100%"}, _method:'put'
+                          },
+                          dataType: "JSON"
+                          }).done(function() {
+                  
+                              $.ajax({url:"csses/main.css",success:function(result){
+                 $("style").html(result);
+                 
+                 }});
+
+
+                });
+	
+}else{
+	
+	$.ajax({
+                         type: "POST",
+                         url:  "/csses/<%= @wraper.css.id %>",
+                         data: { css: { width:  "850px"}, _method:'put'
+                          },
+                          dataType: "JSON"
+                          }).done(function() {
+                  
+                              $.ajax({url:"csses/main.css",success:function(result){
+                 $("style").html(result);
+                 }});
+
+
+                });
+	
+	
+}
+	 };
+      
+      
+function edit(cont,urlen){
+		
+	$.ajax({
+                         type: "POST",
+                         url: urlen,
+                         data: { section: { content:  cont}, _method:'put'
+                          },
+                          dataType: "JSON"
+                          }).done(function() {
+                   CKEDITOR.disableAutoInline = false;
+                  $('#content').load('/sections/main.html #content');
+
+
+                });
+
+}

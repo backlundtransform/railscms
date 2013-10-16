@@ -1,0 +1,25 @@
+<%= form_for(@css) do |f| %>
+  <% if @css.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@css.errors.count, "error") %> prohibited this css from being saved:</h2>
+
+      <ul>
+      <% @css.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :color %><br>
+    <%= f.text_field :color %>
+  </div>
+  <div class="field">
+    <%= f.label :background %><br>
+    <%= f.text_field :background %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
